@@ -6,6 +6,7 @@ import { Server } from "socket.io";
 const app = express();
 app.use(cors());
 
+const PORT = 3001;
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -32,6 +33,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING");
+server.listen(process.env.PORT || PORT, () => {
+  console.log(`SERVER RUNNING on port ${PORT}`);
 });
